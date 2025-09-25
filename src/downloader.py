@@ -120,7 +120,10 @@ class MixamoDownloader(QtCore.QObject):
       url = self.export_animation(character_id, anim_payload)
 
       #print(f"Downloading {anim_name}...")
-      self.download_animation(url)
+      try:
+        self.download_animation(url)
+      except Exception as e:
+        print(f"Failed to download animation from {url}: {e}")      
 
     #print("DOWNLOAD COMPLETE.")
     # Emit the 'finished' signal to let the UI know that worker is done.
